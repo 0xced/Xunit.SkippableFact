@@ -63,7 +63,7 @@ public class SkippableTestMessageBus : IMessageBus
             string? skipReason = null;
             switch (outerException)
             {
-                case string _ when this.ShouldSkipException(outerException):
+                case not null when this.ShouldSkipException(outerException):
                     skipTest = true;
                     skipReason = failed.Messages?.FirstOrDefault();
                     break;

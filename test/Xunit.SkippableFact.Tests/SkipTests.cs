@@ -75,7 +75,7 @@ public class SkipTests
                 ? "Not null"
                 : null;
 
-        Skip.IfNot(value is object);
+        Skip.IfNot(value is not null);
 
         // Does not trigger a nullable reference type warning
         _ = value.Substring(0);

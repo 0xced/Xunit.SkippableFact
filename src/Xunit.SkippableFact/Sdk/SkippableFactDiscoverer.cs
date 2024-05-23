@@ -36,8 +36,8 @@ public class SkippableFactDiscoverer : IXunitTestCaseDiscoverer
     public static string[] GetSkippableExceptionNames(IAttributeInfo factAttribute)
     {
         Requires.NotNull(factAttribute, nameof(factAttribute));
-        object[]? firstArgument = (object[])factAttribute.GetConstructorArguments().FirstOrDefault();
-        Type[]? skippingExceptions = firstArgument?.Cast<Type>().ToArray() ?? Type.EmptyTypes;
+        object[]? firstArgument = (object[]?)factAttribute.GetConstructorArguments().FirstOrDefault();
+        Type[]? skippingExceptions = firstArgument?.OfType<Type>().ToArray() ?? Type.EmptyTypes;
         Array.Resize(ref skippingExceptions, skippingExceptions.Length + 1);
         skippingExceptions[skippingExceptions.Length - 1] = typeof(SkipException);
 
